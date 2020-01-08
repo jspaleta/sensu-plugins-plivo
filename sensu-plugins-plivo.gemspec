@@ -39,7 +39,7 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'rest-client', '1.8.0'
   s.add_runtime_dependency 'sensu-plugin', '>= 4.0', '< 5.0'
 
-  s.add_development_dependency 'bundler',                   '~> 2.1'
+  s.add_development_dependency 'bundler',                   '~> 1.17.3'
   s.add_development_dependency 'codeclimate-test-reporter', '~> 1.0'
   s.add_development_dependency 'github-markup',             '~> 3.0'
   s.add_development_dependency 'pry',                       '~> 0.10'
