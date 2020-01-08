@@ -14,8 +14,8 @@ notifications:
     on_failure: always
 script:
 - bundle exec rake default
-- gem build sensu-plugins-twilio.gemspec
-- gem install sensu-plugins-twilio-*.gem
+- gem build sensu-plugins-plivo.gemspec
+- gem install sensu-plugins-plivo-*.gem
 deploy:
 - provider: rubygems
   api_key:
@@ -26,7 +26,7 @@ deploy:
     all_branches: true
     rvm: 2.3
     rvm: 2.4
-    repo: sensu-plugins/sensu-plugins-twilio
+    repo: sensu-plugins/sensu-plugins-plivo
 - provider: script
   script: bonsai/ruby-runtime/travis-build-ruby-plugin-assets.sh sensu-plugins-disk-checks
   skip_cleanup: true
