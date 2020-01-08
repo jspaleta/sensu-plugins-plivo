@@ -4,7 +4,6 @@ cache:
 install:
 - bundle install
 rvm:
-- 2.3
 - 2.4
 notifications:
   email:
