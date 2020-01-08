@@ -23,7 +23,7 @@ class PlivoSMS < Sensu::Handler
          long: '--json_config JsonConfig',
          required: false,
          default: 'plivosms'
-  
+
   def short_name
     @event['client']['name'] + '/' + @event['check']['name']
   end
@@ -31,7 +31,7 @@ class PlivoSMS < Sensu::Handler
   def action_to_string
     @event['action'].eql?('resolve') ? 'RESOLVED' : 'ALERT'
   end
-  
+
   def status_to_string
     case @event['check']['status']
     when 0
@@ -44,24 +44,24 @@ class PlivoSMS < Sensu::Handler
       'UNKNOWN'
     end
   end
-  
+
   def json_config
     @json_config ||= config[:json_config]
   end
-  
+
   def interested_in_check?(candidate)
-    (candidate['subscriptions'].nil? ||     # no subscription attribute specified
+    (candidate['subscriptions'].nil? || # no subscription attribute specified
       candidate['subscriptions'].include?('all') ||
       ((candidate['subscriptions'] & @event['check']['subscribers']).size > 0) || # rubocop:disable Style/ZeroLengthPredicate
-      candidate['checks'].nil? ||     # no checks were specified in the config
+      candidate['checks'].nil? || # no checks were specified in the config
       candidate['checks'].include?(@event['check']['name']))
   end
-  
+
   def passed_status_cutoff?(candidate)
-    (@event['action'].eql?('resolve') || 
-      (candidate['cutoff'] || 2) <= @event['check']['status'])  # default to only send sms on critical
+    (@event['action'].eql?('resolve') ||
+      (candidate['cutoff'] || 2) <= @event['check']['status']) # default to only send sms on critical
   end
-  
+
   def handle
     auth_id = settings[json_config]['id']
     auth_token = settings[json_config]['token']
@@ -95,18 +95,16 @@ class PlivoSMS < Sensu::Handler
     recipients.each do |recipient|
       params = {
         'src' => from_number, # Sender's phone number with country code
-        'dst' => recipient,   # Receiver's phone Number with country code
-        'text' => message     # SMS Text Message
+        'dst' => recipient, # Receiver's phone Number with country code
+        'text' => message # SMS Text Message
       }
-      params.merge!(
-        {
-          'url' => url,       # The URL to which with the status of the message is sent
-          'method' => 'POST' # The method used to call the url
-        }
-      ) unless url.to_s.empty?
-      
+      unless url.to_s.empty?
+        params['url'] = url
+        params['method'] = 'POST'
+      end
+
       response = plivo.send_message(params)
-      
+
       if response[1]['error'].nil?
         puts "Notified #{recipient} for #{action_to_string}"
       else

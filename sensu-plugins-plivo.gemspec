@@ -34,10 +34,10 @@ Gem::Specification.new do |s|
   s.test_files             = s.files.grep(%r{^(test|spec|features)/})
   s.version                = SensuPluginsPlivo::Version::VER_STRING
 
+  s.add_runtime_dependency 'nori', '2.6.0'
+  s.add_runtime_dependency 'plivo', '4.3.4'
+  s.add_runtime_dependency 'rest-client', '1.8.0'
   s.add_runtime_dependency 'sensu-plugin', '>= 4.0', '< 5.0'
-  s.add_runtime_dependency 'plivo',  '4.3.4'
-  s.add_runtime_dependency 'rest-client',  '1.8.0'
-  s.add_runtime_dependency 'nori',         '2.6.0'
 
   s.add_development_dependency 'bundler',                   '~> 2.1'
   s.add_development_dependency 'codeclimate-test-reporter', '~> 1.0'
@@ -45,7 +45,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'pry',                       '~> 0.10'
   s.add_development_dependency 'rake',                      '~> 13.0'
   s.add_development_dependency 'redcarpet',                 '~> 3.2'
-  s.add_development_dependency 'rubocop',                   '~> 0.79.0'
   s.add_development_dependency 'rspec',                     '~> 3.4'
+  s.add_development_dependency 'rubocop',                   '~> 0.41.2'
   s.add_development_dependency 'yard',                      '~> 0.8'
 end
