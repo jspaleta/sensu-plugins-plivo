@@ -35,7 +35,7 @@ Gem::Specification.new do |s|
   s.version                = SensuPluginsPlivo::Version::VER_STRING
 
   s.add_runtime_dependency 'sensu-plugin', '>= 4.0', '< 5.0'
-  s.add_runtime_dependency 'plivo',  '0.3.19'
+  s.add_runtime_dependency 'plivo',  '4.3.4'
   s.add_runtime_dependency 'rest-client',  '1.8.0'
   s.add_runtime_dependency 'nori',         '2.6.0'
 
