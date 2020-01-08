@@ -24,7 +24,6 @@ deploy:
   on:
     tags: true
     all_branches: true
-    rvm: 2.3
     rvm: 2.4
     repo: sensu-plugins/sensu-plugins-plivo
 - provider: script
@@ -33,5 +32,4 @@ deploy:
   on:
     tags: true
     all_branches: true
-    rvm: 2.3
     rvm: 2.4
