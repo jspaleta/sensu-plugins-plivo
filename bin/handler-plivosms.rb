@@ -90,7 +90,7 @@ class PlivoSMS < Sensu::Handler
 
     message[157..message.length] = '...' if message.length > 160
 
-    plivo = RestAPI.new(auth_id, auth_token)
+    plivo = Plivo::RestClient.new(auth_id, auth_token)
 
     recipients.each do |recipient|
       params = {
